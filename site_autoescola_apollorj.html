@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoescola Apollo - CFC Flamengo | Simulação de CNH & Inscrição</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apollo: {
+                            yellow: '#FFD700',
+                            gold: '#E6C200',
+                            darkYellow: '#B89B00',
+                            navy: '#0A192F',
+                            navyLight: '#112240',
+                            blue: '#1E3A8A',
+                            accent: '#2563EB',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        .gradient-brand {
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #1E3A8A 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FFD700 0%, #FF9900 50%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background: linear-gradient(rgba(10, 25, 47, 0.92), rgba(17, 34, 64, 0.88)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1600&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased selection:bg-apollo-yellow selection:text-apollo-navy">
+
+    <!-- Top Contact Bar -->
+    <div class="bg-slate-950 text-slate-300 text-xs sm:text-sm py-2 px-4 border-b border-slate-800/80 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center flex-wrap gap-4">
+                <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-apollo-yellow"></i> R. Marquês de Abrantes, 230 - Loja, Flamengo - RJ</span>
+                <span class="hidden md:inline-block text-slate-600">|</span>
+                <span class="hidden md:flex items-center gap-1.5 text-emerald-400 font-medium"><i class="fa-solid fa-shield-halved"></i> CFC Credenciado DETRAN-RJ</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="tel:02125510845" class="hover:text-apollo-yellow transition-colors hidden sm:inline"><i class="fa-solid fa-phone text-xs"></i> (21) 2551-0845</a>
+                <a href="tel:02125522636" class="hover:text-apollo-yellow transition-colors hidden sm:inline"><i class="fa-solid fa-phone text-xs"></i> (21) 2552-2636</a>
+                <a href="https://wa.me/5521970357372" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 py-1 rounded-full font-bold flex items-center gap-1.5 text-xs transition-transform active:scale-95 shadow">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> (21) 97035-7372
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="bg-apollo-navy/95 backdrop-blur-md border-b border-slate-800 sticky top-9 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-12 h-12 bg-apollo-yellow rounded-2xl flex items-center justify-center text-apollo-navy shadow-lg shadow-yellow-500/20 group-hover:scale-105 transition-transform border-2 border-white/20">
+                        <i class="fa-solid fa-car-side text-2xl"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-[10px] uppercase tracking-widest font-bold text-apollo-yellow">CFC • Grupo Apollo</span>
+                        <div class="flex items-center gap-1">
+                            <span class="text-xl sm:text-2xl font-black text-white tracking-tight">AUTOESCOLA</span>
+                            <span class="text-xl sm:text-2xl font-black gradient-text tracking-wider">APOLLO</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center gap-6 font-medium text-slate-300 text-sm">
+                    <a href="#sobre" class="hover:text-apollo-yellow transition-colors py-2">Sobre</a>
+                    <a href="#simulador" class="hover:text-apollo-yellow transition-colors py-2 text-apollo-yellow font-bold flex items-center gap-1.5"><i class="fa-solid fa-calculator"></i> Simulador</a>
+                    <a href="#servicos" class="hover:text-apollo-yellow transition-colors py-2">Serviços</a>
+                    <a href="#faq" class="hover:text-apollo-yellow transition-colors py-2">Dúvidas</a>
+                    <a href="#contato" class="hover:text-apollo-yellow transition-colors py-2">Contato</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:flex items-center">
+                    <a href="#simulador" class="bg-apollo-yellow hover:bg-apollo-gold text-apollo-navy font-extrabold px-5 py-2.5 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Simular Agora</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" type="button" aria-label="Abrir Menu" class="md:hidden p-2 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white focus:outline-none">
+                    <i id="menu-icon-bars" class="fa-solid fa-bars text-2xl"></i>
+                    <i id="menu-icon-x" class="fa-solid fa-xmark text-2xl hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-apollo-navyLight border-b border-slate-800 px-4 pt-3 pb-6 space-y-3 shadow-2xl">
+            <a href="#sobre" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 font-medium hover:bg-slate-800">Sobre a Autoescola</a>
+            <a href="#simulador" class="mobile-link block py-2 px-3 rounded-lg text-apollo-yellow font-bold hover:bg-slate-800 bg-apollo-yellow/10"><i class="fa-solid fa-calculator mr-2"></i> Simulador de Preços</a>
+            <a href="#servicos" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 font-medium hover:bg-slate-800">Cursos & Categoria</a>
+            <a href="#faq" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 font-medium hover:bg-slate-800">Perguntas Frequentes</a>
+            <a href="#contato" class="mobile-link block py-2 px-3 rounded-lg text-slate-200 font-medium hover:bg-slate-800">Contato & Endereço</a>
+            
+            <a href="https://wa.me/5521970357372" target="_blank" class="w-full mt-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-lg">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Atendimento via WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white relative py-16 sm:py-24 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <!-- Badge -->
+                    <div class="inline-flex items-center gap-2 bg-apollo-yellow/20 border border-apollo-yellow/40 backdrop-blur-md px-4 py-1.5 rounded-full text-apollo-yellow font-bold text-xs sm:text-sm">
+                        <i class="fa-solid fa-award"></i>
+                        <span>Grupo Apollo — Mais de 40 Anos no Flamengo</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Conquiste sua CNH no Flamengo com <span class="text-apollo-yellow">Tradição & Facilidade</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+                        Aprovando gerações no Rio de Janeiro. Instrutores capacitados, frota moderna com ar-condicionado e assessoria completa em todo o processo do DETRAN-RJ.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#simulador" class="w-full sm:w-auto bg-apollo-yellow hover:bg-apollo-gold text-apollo-navy font-black text-lg px-8 py-4 rounded-xl shadow-xl transition-all transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-calculator"></i>
+                            <span>Simular Orçamento Online</span>
+                        </a>
+                        <a href="https://wa.me/5521970357372?text=Olá!%20Vim%20pelo%20site%20e%20quero%20tirar%20dúvidas%20sobre%20a%20CNH." target="_blank" class="w-full sm:w-auto bg-slate-800/80 hover:bg-slate-800 text-white border border-slate-700 font-semibold text-base px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
+                            <span>Falar no WhatsApp</span>
+                        </a>
+                    </div>
+
+                    <!-- Highlights Grid -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800 mt-6 max-w-lg mx-auto lg:mx-0">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-apollo-yellow">40+</p>
+                            <p class="text-xs text-slate-400">Anos de Tradição</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-emerald-400">100%</p>
+                            <p class="text-xs text-slate-400">Credenciado DETRAN</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-blue-400">Flamengo</p>
+                            <p class="text-xs text-slate-400">Excelente Localização</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Form Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-apollo-navyLight text-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-700 relative">
+                        <div class="absolute -top-3 right-6 bg-apollo-yellow text-apollo-navy text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow">
+                            Atendimento Rápido
+                        </div>
+
+                        <h3 class="text-2xl font-extrabold text-white mb-1">Contato Direto</h3>
+                        <p class="text-xs text-slate-400 mb-6">Preencha os dados e receba orientações no WhatsApp em instantes.</p>
+
+                        <form id="hero-lead-form" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Seu Nome</label>
+                                <input type="text" id="quick-name" required placeholder="Ex: Lucas Silva" class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-white focus:ring-2 focus:ring-apollo-yellow focus:outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Serviço de Interesse</label>
+                                <select id="quick-service" class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-white focus:ring-2 focus:ring-apollo-yellow focus:outline-none">
+                                    <option value="Primeira Habilitação (Carro B / Moto A / Carro e Moto AB)">1ª Habilitação (A, B ou AB)</option>
+                                    <option value="Inclusão de Categoria (A ou B)">Inclusão de Categoria</option>
+                                    <option value="Aulas Práticas para Habilitados">Treinamento para Habilitados</option>
+                                    <option value="Curso de Reciclagem de Condutor Infrator">Reciclagem de Infrator DETRAN</option>
+                                    <option value="Aproveitamento de Processo">Aproveitamento de Processo</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Seu WhatsApp</label>
+                                <input type="tel" id="quick-phone" required placeholder="(21) 99999-9999" class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-white focus:ring-2 focus:ring-apollo-yellow focus:outline-none">
+                            </div>
+                            <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-base">
+                                <i class="fa-brands fa-whatsapp text-xl"></i> Solicitar pelo WhatsApp
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE PRICE SIMULATOR SECTION -->
+    <section id="simulador" class="py-20 bg-slate-950 border-y border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-apollo-yellow font-bold text-xs uppercase tracking-widest bg-apollo-yellow/10 px-3 py-1 rounded-full border border-apollo-yellow/20"><i class="fa-solid fa-calculator mr-1"></i> Monte Seu Pacote</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Simulador de Investimento CNH</h2>
+                <p class="text-slate-400 text-sm sm:text-base mt-2">Selecione a categoria e opcionais desejados para obter um orçamento estimado imediato para envio à nossa equipe.</p>
+            </div>
+
+            <div class="bg-apollo-navyLight border border-slate-700 rounded-3xl p-6 sm:p-10 shadow-2xl">
+                <form id="simulator-form" class="space-y-8">
+                    
+                    <!-- Category Selection -->
+                    <div>
+                        <label class="block text-sm font-bold text-apollo-yellow uppercase tracking-wider mb-4">
+                            1. Escolha a Categoria Principal *
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="category-options">
+                            
+                            <!-- Option B -->
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 hover:border-apollo-yellow p-4 rounded-2xl flex items-start gap-3 transition-all option-card">
+                                <input type="radio" name="sim-category" value="b" data-price="1300" data-name="Primeira Habilitação Carro (Cat. B)" class="mt-1 accent-apollo-yellow" checked>
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-white text-base">
+                                        <i class="fa-solid fa-car text-apollo-yellow"></i>
+                                        <span>Carro (Cat. B)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Primeira habilitação para carros de passeio.</p>
+                                    <span class="text-xs font-semibold text-emerald-400 mt-2 block">A partir de R$ 1.300</span>
+                                </div>
+                            </label>
+
+                            <!-- Option A -->
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 hover:border-apollo-yellow p-4 rounded-2xl flex items-start gap-3 transition-all option-card">
+                                <input type="radio" name="sim-category" value="a" data-price="1000" data-name="Primeira Habilitação Moto (Cat. A)" class="mt-1 accent-apollo-yellow">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-white text-base">
+                                        <i class="fa-solid fa-motorcycle text-apollo-yellow"></i>
+                                        <span>Moto (Cat. A)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Primeira habilitação para motocicletas.</p>
+                                    <span class="text-xs font-semibold text-emerald-400 mt-2 block">A partir de R$ 1.000</span>
+                                </div>
+                            </label>
+
+                            <!-- Option AB -->
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 hover:border-apollo-yellow p-4 rounded-2xl flex items-start gap-3 transition-all option-card">
+                                <input type="radio" name="sim-category" value="ab" data-price="1900" data-name="Combo Carro + Moto (Cat. AB)" class="mt-1 accent-apollo-yellow">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-white text-base">
+                                        <i class="fa-solid fa-car text-apollo-yellow"></i> + <i class="fa-solid fa-motorcycle text-apollo-yellow"></i>
+                                        <span>Carro + Moto (AB)</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Combo completo de categorias A e B.</p>
+                                    <span class="text-xs font-semibold text-emerald-400 mt-2 block">A partir de R$ 1.900</span>
+                                </div>
+                            </label>
+
+                            <!-- Inclusão -->
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 hover:border-apollo-yellow p-4 rounded-2xl flex items-start gap-3 transition-all option-card">
+                                <input type="radio" name="sim-category" value="inc" data-price="900" data-name="Inclusão de Categoria (A ou B)" class="mt-1 accent-apollo-yellow">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-white text-base">
+                                        <i class="fa-solid fa-plus-circle text-apollo-yellow"></i>
+                                        <span>Inclusão A ou B</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Para quem já possui CNH de Moto ou Carro.</p>
+                                    <span class="text-xs font-semibold text-emerald-400 mt-2 block">A partir de R$ 900</span>
+                                </div>
+                            </label>
+
+                            <!-- Reciclagem -->
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 hover:border-apollo-yellow p-4 rounded-2xl flex items-start gap-3 transition-all option-card">
+                                <input type="radio" name="sim-category" value="rec" data-price="650" data-name="Curso de Reciclagem / Infrator DETRAN" class="mt-1 accent-apollo-yellow">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-white text-base">
+                                        <i class="fa-solid fa-rotate-left text-apollo-yellow"></i>
+                                        <span>Reciclagem DETRAN</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Regularização para condutores suspensos.</p>
+                                    <span class="text-xs font-semibold text-emerald-400 mt-2 block">A partir de R$ 650</span>
+                                </div>
+                            </label>
+
+                            <!-- Habilitados -->
+                            <label class="cursor-pointer border-2 border-slate-700 bg-slate-900 hover:border-apollo-yellow p-4 rounded-2xl flex items-start gap-3 transition-all option-card">
+                                <input type="radio" name="sim-category" value="hab" data-price="450" data-name="Treinamento para Habilitados (Treino de Medo)" class="mt-1 accent-apollo-yellow">
+                                <div>
+                                    <div class="flex items-center gap-2 font-bold text-white text-base">
+                                        <i class="fa-solid fa-user-check text-apollo-yellow"></i>
+                                        <span>Para Habilitados</span>
+                                    </div>
+                                    <p class="text-xs text-slate-400 mt-1">Aulas práticas de reforço e perda de medo.</p>
+                                    <span class="text-xs font-semibold text-emerald-400 mt-2 block">Pacote R$ 450</span>
+                                </div>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <!-- Additional Extras -->
+                    <div>
+                        <label class="block text-sm font-bold text-apollo-yellow uppercase tracking-wider mb-4">
+                            2. Adicionais Opcionais
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            
+                            <label class="cursor-pointer border border-slate-700 bg-slate-900 p-4 rounded-2xl flex items-center justify-between hover:border-slate-500 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="extra-noturna" data-price="150" data-name="Aulas Práticas Noturnas Extra" class="w-5 h-5 accent-apollo-yellow rounded">
+                                    <div>
+                                        <p class="font-bold text-sm text-white">Treinamento Noturno Extra</p>
+                                        <p class="text-xs text-slate-400">Prática focada no trânsito à noite (+R$ 150)</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label class="cursor-pointer border border-slate-700 bg-slate-900 p-4 rounded-2xl flex items-center justify-between hover:border-slate-500 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="extra-agendamento" data-price="100" data-name="Assessoria VIP e Agendamento Expresso" class="w-5 h-5 accent-apollo-yellow rounded">
+                                    <div>
+                                        <p class="font-bold text-sm text-white">Assessoria VIP DETRAN-RJ</p>
+                                        <p class="text-xs text-slate-400">Acompanhamento e agendamento prioritário (+R$ 100)</p>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <!-- Personal Info for Quote -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-slate-800">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Seu Nome Completo *</label>
+                            <input type="text" id="sim-name" required placeholder="Digite seu nome" class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-white focus:ring-2 focus:ring-apollo-yellow focus:outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Seu WhatsApp *</label>
+                            <input type="tel" id="sim-phone" required placeholder="(21) 99999-9999" class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900 text-white focus:ring-2 focus:ring-apollo-yellow focus:outline-none text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Calculation Summary Display -->
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-wider text-slate-400 font-bold block">Valor Estimado do Pacote:</span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <span class="text-4xl font-black text-apollo-yellow" id="display-total-price">R$ 1.300</span>
+                                <span class="text-xs text-slate-400">(Parcelamento disponível na autoescola)</span>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">*Taxas de Duda/Exames do DETRAN-RJ pagas à parte conforme legislação vigente.</p>
+                        </div>
+
+                        <button type="submit" class="w-full md:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-4 rounded-xl transition-all shadow-xl flex items-center justify-center gap-3 text-base flex-shrink-0">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            <span>Enviar Orçamento no WhatsApp</span>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="space-y-6">
+                    <div class="inline-block bg-apollo-yellow/10 border border-apollo-yellow/30 text-apollo-yellow font-bold px-3 py-1 rounded-md text-xs uppercase tracking-wider">
+                        Tradição no Bairro do Flamengo
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+                        Conheça o CFC Autoescola Apollo
+                    </h2>
+                    <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
+                        O **Grupo Apollo** possui mais de 40 anos de sólida atuação no ensino e formação de condutores no Rio de Janeiro. Localizada na **Rua Marquês de Abrantes, nº 230 - Loja (Flamengo)**, nossa autoescola oferece atendimento personalizado e uma metodologia focada na segurança do aluno.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-800 border border-slate-700">
+                            <i class="fa-solid fa-award text-apollo-yellow text-2xl mb-2"></i>
+                            <h4 class="font-bold text-white">40+ Anos de Experiência</h4>
+                            <p class="text-xs text-slate-400 mt-1">Tradição de pai para filho formando motoristas conscientes.</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-800 border border-slate-700">
+                            <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl mb-2"></i>
+                            <h4 class="font-bold text-white">Selo DETRAN-RJ</h4>
+                            <p class="text-xs text-slate-400 mt-1">Estabelecimento 100% credenciado e homologado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Card -->
+                <div class="relative">
+                    <div class="bg-gradient-to-tr from-apollo-navy to-slate-800 p-3 rounded-3xl border border-slate-700 shadow-2xl">
+                        <div class="bg-slate-950 rounded-2xl overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800&auto=format&fit=crop" alt="Frota Autoescola Apollo" class="w-full h-80 object-cover opacity-80">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent p-6 flex flex-col justify-end">
+                                <span class="bg-apollo-yellow text-apollo-navy font-bold text-xs uppercase px-2.5 py-1 rounded w-fit mb-2">Unidade Flamengo</span>
+                                <h3 class="text-xl font-bold text-white">Rua Marquês de Abrantes, 230 loja</h3>
+                                <p class="text-xs text-slate-300">Próximo ao metrô e principais vias de transporte.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services List Section -->
+    <section id="servicos" class="py-20 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-apollo-yellow font-bold text-xs uppercase tracking-widest">Nossos Cursos</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Serviços Oferecidos</h2>
+                <p class="text-slate-400 text-sm mt-2">Atendemos todas as fases do condutor com suporte completo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service Item 1 -->
+                <div class="bg-apollo-navyLight rounded-2xl p-6 border border-slate-800 hover:border-apollo-yellow transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-apollo-yellow/10 text-apollo-yellow rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-address-card"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Primeira Habilitação (A, B, AB)</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Treinamento teórico e prático para jovens e adultos que desejam tirar a 1ª carteira de motorista ou motociclista.
+                        </p>
+                    </div>
+                    <button onclick="selectCategoryInSimulator('b')" class="text-left text-xs font-bold text-apollo-yellow hover:underline flex items-center gap-1">
+                        <span>Simular Categoria B</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service Item 2 -->
+                <div class="bg-apollo-navyLight rounded-2xl p-6 border border-slate-800 hover:border-apollo-yellow transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-plus-circle"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Inclusão de Categoria</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Já é motorista e quer aprender a pilotar moto? Adicione a Categoria A ou B à sua carteira existente.
+                        </p>
+                    </div>
+                    <button onclick="selectCategoryInSimulator('inc')" class="text-left text-xs font-bold text-apollo-yellow hover:underline flex items-center gap-1">
+                        <span>Simular Inclusão</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service Item 3 -->
+                <div class="bg-apollo-navyLight rounded-2xl p-6 border border-slate-800 hover:border-apollo-yellow transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-user-check"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Treinamento para Habilitados</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Aulas reforçadas para motoristas habilitados com fobia ou falta de prática no trânsito das grandes cidades.
+                        </p>
+                    </div>
+                    <button onclick="selectCategoryInSimulator('hab')" class="text-left text-xs font-bold text-apollo-yellow hover:underline flex items-center gap-1">
+                        <span>Ver Pacote Habilitados</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service Item 4 -->
+                <div class="bg-apollo-navyLight rounded-2xl p-6 border border-slate-800 hover:border-apollo-yellow transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-red-500/10 text-red-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-rotate-left"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Curso Reciclagem Infrator</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Curso oficial para condutores que tiveram a CNH suspensa ou cassada pelo DETRAN-RJ.
+                        </p>
+                    </div>
+                    <button onclick="selectCategoryInSimulator('rec')" class="text-left text-xs font-bold text-apollo-yellow hover:underline flex items-center gap-1">
+                        <span>Simular Reciclagem</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Service Item 5 -->
+                <div class="bg-apollo-navyLight rounded-2xl p-6 border border-slate-800 hover:border-apollo-yellow transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-arrows-spin"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Aproveitamento de Processo</h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Transfira seu processo em andamento em outra autoescola diretamente para a Apollo no Flamengo.
+                        </p>
+                    </div>
+                    <a href="https://wa.me/5521970357372?text=Quero%20informações%20sobre%20Aproveitamento%20de%20Processo" target="_blank" class="text-left text-xs font-bold text-apollo-yellow hover:underline flex items-center gap-1">
+                        <span>Falar com Atendente</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service Item 6 -->
+                <div class="bg-gradient-to-br from-apollo-navy to-blue-900 rounded-2xl p-6 border border-blue-800 flex flex-col justify-between text-white">
+                    <div>
+                        <span class="bg-apollo-yellow text-apollo-navy font-bold text-[10px] uppercase px-2 py-0.5 rounded">Agilidade</span>
+                        <h3 class="text-lg font-bold text-white mt-3 mb-2">Dúvidas com Documentação?</h3>
+                        <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                            Consulte nossa equipe para saber quais documentos trazer para dar entrada imediata no seu processo!
+                        </p>
+                    </div>
+                    <a href="https://wa.me/5521970357372" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-center text-xs transition-colors">
+                        Atendimento WhatsApp
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-apollo-yellow font-bold text-xs uppercase tracking-widest">Respostas Rápidas</span>
+                <h2 class="text-3xl font-extrabold text-white mt-2">Perguntas Frequentes</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-container">
+                
+                <!-- FAQ Item 1 -->
+                <div class="bg-apollo-navyLight rounded-2xl border border-slate-800 overflow-hidden">
+                    <button type="button" onclick="toggleFaqAccordion('faq-1')" class="w-full px-6 py-4 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>Quais os documentos necessários para a matrícula?</span>
+                        <i id="faq-1-icon" class="fa-solid fa-chevron-down text-apollo-yellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-1-content" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-300 border-t border-slate-800/60 pt-3">
+                        Você precisará apresentar seu RG (original em bom estado), CPF e Comprovante de Residência recente em seu nome ou em nome de parentes diretos.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="bg-apollo-navyLight rounded-2xl border border-slate-800 overflow-hidden">
+                    <button type="button" onclick="toggleFaqAccordion('faq-2')" class="w-full px-6 py-4 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>Onde fica localizada a Autoescola Apollo?</span>
+                        <i id="faq-2-icon" class="fa-solid fa-chevron-down text-apollo-yellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-2-content" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-300 border-t border-slate-800/60 pt-3">
+                        Ficamos no coração do Flamengo: **Rua Marquês de Abrantes, nº 230 - Loja**, bem próximo à estação de metrô do Flamengo e linhas de ônibus da Zona Sul.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="bg-apollo-navyLight rounded-2xl border border-slate-800 overflow-hidden">
+                    <button type="button" onclick="toggleFaqAccordion('faq-3')" class="w-full px-6 py-4 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>A autoescola auxilia no agendamento do DETRAN-RJ?</span>
+                        <i id="faq-3-icon" class="fa-solid fa-chevron-down text-apollo-yellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-3-content" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-300 border-t border-slate-800/60 pt-3">
+                        Sim! Cuidamos de todo o processo burocrático, agendamento de exames médicos, provas teóricas e práticas junto ao DETRAN-RJ para sua comodidade.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="bg-apollo-navyLight rounded-2xl border border-slate-800 overflow-hidden">
+                    <button type="button" onclick="toggleFaqAccordion('faq-4')" class="w-full px-6 py-4 text-left font-bold text-white flex justify-between items-center hover:bg-slate-800/50 transition-colors">
+                        <span>Possuo medo de dirigir. As aulas para habilitados funcionam?</span>
+                        <i id="faq-4-icon" class="fa-solid fa-chevron-down text-apollo-yellow transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-4-content" class="hidden px-6 pb-4 text-xs sm:text-sm text-slate-300 border-t border-slate-800/60 pt-3">
+                        Com certeza! Nossos instrutores possuem metodologia paciente voltada para superação da insegurança no trânsito, aclives (ladeiras), garagem e baliza.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section id="contato" class="py-20 bg-slate-950 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="bg-apollo-yellow text-apollo-navy font-black text-xs uppercase px-3 py-1 rounded">Canais de Atendimento</span>
+                    <h2 class="text-3xl font-extrabold text-white">Entre em Contato</h2>
+                    <p class="text-slate-400 text-sm">
+                        CFC Autoescola Apollo — Atendimento presencial no Flamengo e suporte rápido pelo WhatsApp.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-apollo-yellow text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Endereço</h4>
+                                <p class="text-xs text-slate-300">R. Marquês de Abrantes, nº 230 - Loja</p>
+                                <p class="text-xs text-slate-400">Flamengo, Rio de Janeiro - RJ</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">WhatsApp Atendimento</h4>
+                                <p class="text-sm text-emerald-400 font-bold">(21) 97035-7372</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-blue-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">Telefones Fixos</h4>
+                                <p class="text-xs text-slate-300">(21) 2551-0845 / (21) 2552-2636</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope text-amber-400 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">E-mail</h4>
+                                <p class="text-xs text-slate-300">autoescolaapollo@hotmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Frame -->
+                <div class="lg:col-span-7 h-80 lg:h-auto rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+                    <iframe 
+                        title="Mapa Autoescola Apollo Flamengo"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.7214738596646!2d-43.1788889!3d-22.9248889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f62a048a1ed%3A0x1d36d8be69ebdfa!2sR.%20Marqu%C3%AAs%20de%20Abrantes%2C%20230%20-%20Flamengo%2C%20Rio%20de%20Janeiro%20-%20RJ!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+                        class="w-full h-full border-0" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 text-xs py-8 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="font-bold text-slate-300">CFC Autoescola Apollo — Grupo Apollo</p>
+                <p class="text-[11px] text-slate-500">Mais de 40 anos formando condutores • Credenciado DETRAN-RJ</p>
+            </div>
+            <p>&copy; <span id="current-year"></span> Autoescola Apollo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Action WhatsApp Button -->
+    <a href="https://wa.me/5521970357372?text=Olá!%20Vim%20pelo%20site%20da%20Autoescola%20Apollo." target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-3xl shadow-2xl z-50 transition-transform hover:scale-110 active:scale-95" title="WhatsApp Atendimento">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- 100% WORKING JAVASCRIPT CODE -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set dynamic year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // Mobile Navigation Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const barsIcon = document.getElementById('menu-icon-bars');
+            const xIcon = document.getElementById('menu-icon-x');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    barsIcon.classList.add('hidden');
+                    xIcon.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    barsIcon.classList.remove('hidden');
+                    xIcon.classList.add('hidden');
+                }
+            }
+
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', toggleMenu);
+            }
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    barsIcon.classList.remove('hidden');
+                    xIcon.classList.add('hidden');
+                });
+            });
+
+            // Simulator Price Logic
+            const categoryRadios = document.querySelectorAll('input[name="sim-category"]');
+            const extraNoturna = document.getElementById('extra-noturna');
+            const extraAgendamento = document.getElementById('extra-agendamento');
+            const totalPriceDisplay = document.getElementById('display-total-price');
+            const simulatorForm = document.getElementById('simulator-form');
+
+            function calculateTotal() {
+                let total = 0;
+
+                // Selected Category
+                const selectedCat = document.querySelector('input[name="sim-category"]:checked');
+                if (selectedCat) {
+                    total += parseFloat(selectedCat.dataset.price || 0);
+                }
+
+                // Extras
+                if (extraNoturna && extraNoturna.checked) {
+                    total += parseFloat(extraNoturna.dataset.price || 0);
+                }
+
+                if (extraAgendamento && extraAgendamento.checked) {
+                    total += parseFloat(extraAgendamento.dataset.price || 0);
+                }
+
+                // Format Currency BRL
+                if (totalPriceDisplay) {
+                    totalPriceDisplay.textContent = total.toLocaleString('pt-BR', {
+                        style: 'currency',
+                        currency: 'BRL',
+                        maximumFractionDigits: 0
+                    });
+                }
+            }
+
+            // Bind change listeners to category radio buttons and checkboxes
+            categoryRadios.forEach(radio => {
+                radio.addEventListener('change', calculateTotal);
+            });
+
+            if (extraNoturna) extraNoturna.addEventListener('change', calculateTotal);
+            if (extraAgendamento) extraAgendamento.addEventListener('change', calculateTotal);
+
+            // Initial calculation call
+            calculateTotal();
+
+            // Submit Simulator to WhatsApp
+            if (simulatorForm) {
+                simulatorForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('sim-name').value.trim();
+                    const phone = document.getElementById('sim-phone').value.trim();
+
+                    const selectedCat = document.querySelector('input[name="sim-category"]:checked');
+                    const catName = selectedCat ? selectedCat.dataset.name : 'Categoria não especificada';
+                    
+                    let extrasList = [];
+                    if (extraNoturna && extraNoturna.checked) extrasList.push(extraNoturna.dataset.name);
+                    if (extraAgendamento && extraAgendamento.checked) extrasList.push(extraAgendamento.dataset.name);
+
+                    const totalValueText = totalPriceDisplay ? totalPriceDisplay.textContent : 'R$ 0';
+
+                    let message = `*SOLICITAÇÃO DE ORÇAMENTO - AUTOESCOLA APOLLO*\n\n`;
+                    message += `*Nome:* ${name}\n`;
+                    message += `*WhatsApp:* ${phone}\n`;
+                    message += `*Categoria Escolhida:* ${catName}\n`;
+                    
+                    if (extrasList.length > 0) {
+                        message += `*Opcionais:* ${extrasList.join(', ')}\n`;
+                    } else {
+                        message += `*Opcionais:* Nenhum adicional selecionado\n`;
+                    }
+                    
+                    message += `*Valor Estimado do Pacote:* ${totalValueText}\n\n`;
+                    message += `_Gostaria de saber a disponibilidade de turmas e formas de parcelamento no Flamengo._`;
+
+                    const encoded = encodeURIComponent(message);
+                    window.open(`https://wa.me/5521970357372?text=${encoded}`, '_blank');
+                });
+            }
+
+            // Quick Hero Lead Form Handler
+            const heroForm = document.getElementById('hero-lead-form');
+            if (heroForm) {
+                heroForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('quick-name').value.trim();
+                    const service = document.getElementById('quick-service').value;
+                    const phone = document.getElementById('quick-phone').value.trim();
+
+                    let text = `*CONTATO RÁPIDO - SITE AUTOESCOLA APOLLO*\n\n`;
+                    text += `*Nome:* ${name}\n`;
+                    text += `*Telefone/WhatsApp:* ${phone}\n`;
+                    text += `*Serviço de Interesse:* ${service}\n\n`;
+                    text += `_Aguardo retorno das informações no Flamengo._`;
+
+                    window.open(`https://wa.me/5521970357372?text=${encodeURIComponent(text)}`, '_blank');
+                });
+            }
+        });
+
+        // Global function to trigger specific category in simulator from service cards
+        function selectCategoryInSimulator(catValue) {
+            const targetRadio = document.querySelector(`input[name="sim-category"][value="${catValue}"]`);
+            if (targetRadio) {
+                targetRadio.checked = true;
+                targetRadio.dispatchEvent(new Event('change'));
+            }
+
+            const simSection = document.getElementById('simulador');
+            if (simSection) {
+                simSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Global Accordion toggle function for FAQ
+        function toggleFaqAccordion(id) {
+            const content = document.getElementById(`${id}-content`);
+            const icon = document.getElementById(`${id}-icon`);
+
+            if (content) {
+                const isHidden = content.classList.contains('hidden');
+                if (isHidden) {
+                    content.classList.remove('hidden');
+                    if (icon) icon.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    if (icon) icon.classList.remove('rotate-180');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
